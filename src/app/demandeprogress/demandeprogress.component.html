@@ -1,0 +1,27 @@
+<div class="demandesuivre">
+<div class="card " style="width: 18rem; height: fit-content;">
+    <img src="https://codingyaar.com/wp-content/uploads/bootstrap-profile-card-image.jpg" class="card-img-top" alt="...">
+    <div class="card-body">
+      <!-- <h5 class="card-title">{{getdemandeur(demande.matricule) | async}}</h5> -->
+      <p class="card-text">Je veux recruter un profil <strong>{{demande.titrePoste}}</strong> avec des compétences  pour renforcer notre équipe au sein du la direction <strong>{{demande.directionoumagasin}}</strong> </p>
+    </div>
+  </div>
+  
+ <div class="card progress-card">
+    <div class="progress-bar">
+        <div class="card-body">
+            <ul class="new_timeline mt-3">
+                <li *ngFor="let hierarchie of listHierarchie">
+                    <div [ngClass]="changecouleur(hierarchie.statut)"></div>
+                    <div class="time">{{hierarchie.datedecreation | date}}</div>
+                    <div class="desc">
+                        <h3>{{hierarchie.nom}} {{hierarchie.prenom}}</h3>
+                        <h4><strong>{{hierarchie.matricule}}</strong></h4>
+                    </div>
+                    <div><p> {{hierarchie.commentaire }}</p></div>
+                </li>
+            </ul>
+        </div>
+    </div>
+ </div>
+</div>

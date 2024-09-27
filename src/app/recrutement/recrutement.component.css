@@ -1,0 +1,124 @@
+
+.page-header-tab .nav-link.active {
+    font-size: medium;
+    font-weight: bold;
+    border: none;
+    background-color: #EDEFF3;   
+}
+
+
+.page-header-tab .nav-link :hover  {
+    font-size: medium;
+    font-weight: 500;
+    border: none;
+    background-color: #EDEFF3;
+}
+.btn-icon{
+    background-color: transparent;
+}
+.btn-icon .fa-trash-o{
+    color: red;
+}
+.btn-icon .fa-edit{
+    color: gray;
+}
+label {
+    font-weight: bold;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    margin-bottom: 10px;
+}
+
+input[type="text"] {
+    margin-left: 10px;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.box {
+    border: 2px dashed #000;
+    padding: 20px;
+    flex: 0 0 200px;
+    text-align: center;
+    margin: 10px;
+}
+
+.box:hover {
+    border: 2px solid #1d79f1;
+}
+
+.checkmark {
+    color: #008000;
+}
+form .input-group{
+    display:flex; /* Trois colonnes de largeur égale */
+    padding-inline: 20px;
+}
+form .input-group input{
+    margin-right: 10px;
+    
+}
+
+/* Primary Button */
+.btn-primary {
+    background-color: #007bff; /* Primary button color */
+    border-color: #007bff; /* Primary button border color */
+    color: #fff; /* Text color */
+    padding: 10px 20px;
+    font-weight: bold;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3; /* Darken background on hover */
+    border-color: #0056b3; /* Darken border on hover */
+    color: #fff; /* Text color on hover */
+}
+
+/* Secondary Button */
+.btn-secondary {
+    background-color: #6c757d; /* Secondary button color */
+    border-color: #6c757d; /* Secondary button border color */
+    color: #fff; /* Text color */
+    margin-left: 10px;
+    padding: 10px 20px;
+    font-weight: bold;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268; /* Darken background on hover */
+    border-color: #545b62; /* Darken border on hover */
+    color: #fff; /* Text color on hover */
+}
+.custom-dialog {
+    display: block;
+    position: fixed;
+    
+    background-color: white;
+    z-index: 999;
+    display: none;
+}
+
+.with-sidebar {
+    left: 250px;
+    padding: 3px;
+    transition: left 0.3s ease, padding-left 0.3s ease; /* Add transitions for left and padding changes */
+  }
+  
+  /* Remove padding when the sidebar is hidden */
+  .without-sidebar {
+    left: 88px;
+    padding: 3px;
+    transition: left 0.3s ease, padding-left 0.3s ease; /* Add transitions for left and padding changes */
+  }
+

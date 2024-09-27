@@ -1,0 +1,26 @@
+.btn {
+    width: 150px;
+    height: 60px;
+    border: 2px solid blue;
+    border-radius: 45px;
+    transition: all 0.3s;
+    cursor: pointer;
+    background: white;
+    font-size: 1.2em;
+    font-weight: 550;
+    font-family: 'Montserrat', sans-serif;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    left: 60px;
+  }
+  
+  .btn:hover {
+    background: #315cfd;
+    color: white;
+    font-size: 1.5em;
+  }
+  .img-fluid{
+     max-width: 100%;
+     height: auto;
+  }

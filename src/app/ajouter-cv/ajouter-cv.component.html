@@ -1,0 +1,56 @@
+<!-- upload.component.html -->
+<div class="container">
+    <div class="card">
+      <h3 class="text-center mb-3">Ajouter Candidat</h3>
+      <form [formGroup]="uploadForm" (ngSubmit)="onSubmit()">
+        <div class="row">
+          <div class="col-lg-3 col-md-6">
+            <label for="InputNom">Nom</label>
+            <input type="text" class="form-control" id="InputNom" formControlName="nom" placeholder="Nom">
+            <div *ngIf="uploadForm.get('nom')?.invalid && (uploadForm.get('nom')?.dirty || uploadForm.get('nom')?.touched)">
+              <small class="text-danger" *ngIf="uploadForm.get('nom')?.errors?.['required']">Nom est requis.</small>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <label for="InputPrenom">Prenom</label>
+            <input type="text" class="form-control" id="InputPrenom" formControlName="prenom" placeholder="Prenom">
+            <div *ngIf="uploadForm.get('prenom')?.invalid && (uploadForm.get('prenom')?.dirty || uploadForm.get('prenom')?.touched)">
+              <small class="text-danger" *ngIf="uploadForm.get('prenom')?.errors?.['required']">Prenom est requis.</small>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <label for="InputEmail">Email</label>
+            <input type="email" class="form-control" id="InputEmail" formControlName="email" placeholder="Email">
+            <div *ngIf="uploadForm.get('email')?.invalid && (uploadForm.get('email')?.dirty || uploadForm.get('email')?.touched)">
+              <small class="text-danger" *ngIf="uploadForm.get('email')?.errors?.['required']">Email est requis.</small>
+              <small class="text-danger" *ngIf="uploadForm.get('email')?.errors?.['email']">Email invalide.</small>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <label for="InputTelephone">Telephone</label>
+            <input type="text" class="form-control" id="InputTelephone" formControlName="telephone" placeholder="Telephone">
+            <div *ngIf="uploadForm.get('telephone')?.invalid && (uploadForm.get('telephone')?.dirty || uploadForm.get('telephone')?.touched)">
+              <small class="text-danger" *ngIf="uploadForm.get('telephone')?.errors?.['required']">Telephone est requis.</small>
+            </div>
+          </div>
+        </div>
+        <div class="drop_box">
+          <header>
+            <h4>Sélectionner CV</h4>
+          </header>
+          <p>Fichiers supportés: PDF</p>
+          <input type="file" (change)="onFileChange($event)" accept=".pdf" id="fileID" hidden>
+          <button type="button" class="btn" (click)="triggerFileInput()">Choisir CV</button>
+          <div *ngIf="cvInvalid">
+            <small class="text-danger">CV est requis.</small>
+          </div>
+          <div *ngIf="selectedFileName">
+            <p>CV sélectionné : {{ selectedFileName }}</p>
+          </div>
+        </div>
+        
+        <button type="submit" class="btn btn-primary justify-content-end" [disabled]="uploadForm.invalid || !selectedFile">Ajouter</button>
+      </form>
+    </div>
+  </div>
+  

@@ -1,0 +1,136 @@
+<div class="container">
+
+    <div class="form-wrap">
+        <div class="progress-bar"></div>
+        <h2 class="text-center" style="margin-bottom: 30px;">Offre de Stagiaire</h2>
+        <form>
+            <!--===================================================form 1=============================================-->
+            <div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="direction">Direction </label>
+                            <input [(ngModel)]="stageModel.direction" id="direction" type="text" name="Direction "
+                                placeholder="Direction " class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="encadrant"> Encadrant du stage </label>
+                            <input [(ngModel)]="stageModel.superviseur" id="encadrant" type="text"
+                                name="Encadrant du stage" placeholder="Encadrant du stage" class="form-control"
+                                required>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="Formation">Formation du candidat </label>
+                            <input [(ngModel)]="stageModel.formationCandidat" id="Formation" type="text"
+                                name="Formation" placeholder="Formation du candidat" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="Niveau">Niveau d’études </label>
+                            <input [(ngModel)]="stageModel.niveauEducation" id="Niveau" type="text"
+                                name="Niveau d'études" placeholder="Niveau d’études" class="form-control" required>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="duree">Durée du stage</label>
+                            <input [(ngModel)]="stageModel.dureeDuStage" id="duree" type="number" name="Durée du stage"
+                                class="form-control" placeholder="Durée du stage">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="debut">Debut du stage</label>
+                            <input [(ngModel)]="test" id="debut" type="date" name="Datesdustage" class="form-control" placeholder="Dates du stage">
+
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Type de stage </label>
+                            <select [(ngModel)]="stageModel.stageType" name="role" class="form-control" required>
+                                <option selected value="Observation">Observation</option>
+                                <option value="Application">Application</option>
+                                <option value="Pré-embauche">Pré-embauche</option>
+                                <option value="pfe">Fin d’études</option>
+                                <option value="Autre">Autre</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="EcolesSouhaitees">Ecoles souhaitées</label>
+                            <select [(ngModel)]="stageModel.ecolesPreferees" id="EcolesSouhaitees" class="form-control" required>
+                                <option selected value="Informatique">EMSI</option>
+                                <option value="Electronique">ENCG</option>
+                                <option value="Automatique">ENSIAS</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Nature du stage</label>
+                            <div class="custom-control custom-radio custom-control-inline"
+                                style="display: flex;align-items: center; justify-content: space-between;">
+                                <div>
+                                    <input [(ngModel)]="stageModel.natureDuStage" id="Conventionné" type="radio"
+                                        value="Conventionné" name="checkbox" class="custom-control-input" checked="">
+                                    <label class="custom-control-label" for="Conventionné">Conventionné
+
+                                    </label><br>
+                                </div>
+                                <div>
+                                    <input [(ngModel)]="stageModel.natureDuStage" id="NonConventionné" type="radio"
+                                        value="Non conventionné" name="checkbox" class="custom-control-input">
+                                    <label class="custom-control-label" for="NonConventionné">Non conventionné</label>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Livrable attendu </label>
+                            <select [(ngModel)]="stageModel.livrableAttendu" name="role" class="form-control" required>
+                                <option selected value="Observation">Rapport de stage</option>
+                                <option value="Application"> Projet de fin d’études</option>
+                                <option value="Pré-embauche">Mémoire de recherche</option>
+                                <option value="Autre">Autre</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label>Description du stage</label>
+                            <textarea class="form-control" name="comment" placeholder="Entrez votre message..."
+                                [(ngModel)]="stageModel.contenuDuStage" (input)="onTextareaInput($event)"
+                                [disabled]="desactiverTexterea"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--===================================================form 2=============================================-->
+
+
+            <div class="row">
+                <div class="col-md-8"></div>
+                <div class="col-md-4 d-flex justify-content-end">
+                    <button type="submit" class="btn btn-primary" (click)="Suivant()">Suivant</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

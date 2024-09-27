@@ -1,0 +1,137 @@
+
+
+/* fc grid*/
+.fc-header-toolbar .fc-toolbar-chunk h2 {
+    font-family: "Noto Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-variation-settings: "wdth" 100;
+    font-size: 1.3rem;
+    line-height: 1.2;
+    color: #333;
+}
+
+.fc-header-toolbar .fc-toolbar-chunk {
+    display: inline-flex;
+    flex-direction: row;
+}
+
+.fc-header-toolbar .fc-button-group {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.fc-header-toolbar .fc-button-primary {
+    background-color: transparent;
+    color: #ffffff;
+    border: none;
+}
+
+.fc-header-toolbar .fc-toolbar-chunk .fc-today-button {
+    background: transparent;
+    color: #333;
+    border: none;
+    margin-top: 0.2rem;
+    border: 1px solid #333;
+    border-radius: 5px;
+    height: 30px;
+    width: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.fc-header-toolbar .fc-button-primary .fc-icon {
+    color: black;
+    font-size: 1.5rem;
+    padding: 0;
+}
+
+.fc-header-toolbar .fc-toolbar-chunk .fc-today-button:hover {
+    background: #333;
+    color: #fff;
+}
+
+.fc-header-toolbar .fc-toolbar-chunk .fc-icon:hover {
+    color: #0c0c0c;
+    background: transparent;
+    border-radius: 5px;
+    height: fit-content;
+    width: fit-content;
+}
+
+.fc-header-toolbar .fc-toolbar-chunk .fc-prev-button,
+.fc-header-toolbar .fc-toolbar-chunk .fc-next-button {
+    background: transparent;
+    height: 24px;
+    padding: 0;
+}
+
+.fc-header-toolbar .fc-toolbar-chunk .fc-prev-button:active,
+.fc-header-toolbar .fc-toolbar-chunk .fc-next-button:active {
+    background: transparent;
+}
+
+.fc-header-toolbar .fc-button {
+    background-color: transparent;
+    color: #ffffff;
+}
+
+.fc-view-harness {
+    height: 600px !important;
+}
+
+@media screen and (max-width: 768px) {
+    .fc-view-harness {
+        height: 75vh !important;
+    }
+
+    .fc-header-toolbar .fc-toolbar-chunk .fc-today-button {
+        margin-top: 0.5rem;
+        width: 100%;
+        height: 30px;
+    }
+}
+
+thead .fc-day {
+    background-color: #f4f4f4;
+    color: #333;
+    font-family: "Noto Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-variation-settings: "wdth" 100;
+}
+
+thead .fc-day .fc-scrollgrid-sync-inner .fc-col-header-cell-cushion {
+    text-decoration: none;
+    color: #333;
+    font-family: "Noto Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-variation-settings: "wdth" 100;
+}
+
+/* Style pour le calendrier */
+.fc-daygrid-day-number {
+    font-size: 1em;
+    color: #646262;
+    font-weight: 400;
+    border: none;
+    text-decoration: none;
+}
+
+.fc-day-header {
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+.fc-event {
+    background-color: #1c73e8;
+    color: white;
+    border: none;
+    padding: 2px 5px;
+    border-radius: 3px;
+}
+
+.fc-daygrid-day.fc-day-today {
+    background-color: #f4f4f4;
+}

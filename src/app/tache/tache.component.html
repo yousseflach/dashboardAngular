@@ -1,0 +1,143 @@
+<div class="container-fluid d-flex">
+  <!-- Sidebar -->
+  <div>
+    <app-leftsidebar (customEvent)="receiveData($event)"> </app-leftsidebar>
+  </div>
+
+  <!-- Main Content -->
+  <div
+    class="page"
+    [ngClass]="!isSidebarVisible ? 'with-sidebar' : 'without-sidebar'"
+  >
+    <div id="page_top" class="section-body">
+      <div class="container-fluid">
+        <div class="page-header">
+          <div class="left">
+            <div class="input-icon xs-hide">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Search for..."
+              />
+              <span class="input-icon-addon"><i class="fe fe-search"></i></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <section class="ftco-section">
+      <div class="table-wrap">
+        <table class="table table-responsive-xl">
+          <thead>
+            <tr>
+              <th>Poste</th>
+              <th>Tache</th>
+              <th>Direction</th>
+              <th>Demandeur</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="alert" role="alert" *ngFor="let tache of taches">
+              <td (click)="openDialog(tache)">
+                {{ tache.titrePoste }}
+              </td>
+              <td (click)="openDialog(tache)">
+                {{ statusdetache(tache.taches) }}
+              </td>
+              <td (click)="openDialog(tache)">
+                {{ tache.directionoumagasin }}
+              </td>
+              <td class="d-flex align-items-center" (click)="openDialog(tache)">
+                <div class="pl-3 email">
+                  <span>{{ tache.matricule }}</span>
+                  <span
+                    >date de creation: {{ tache.dateDeCreation | date }}</span
+                  >
+                </div>
+              </td>
+              <td class="status">
+                <span class="waiting" (click)="openDialog(tache)">{{
+                  tache.statut.toString()
+                }}</span>
+              </td>
+              <td>
+                <div class="action">
+                  <div class="delete" *ngIf="tache.matricule === matricule">
+                    <i class="fe fe-trash"></i>
+                  </div>
+                  <div class="eye" (click)="opensuivi(tache.id, tache)">
+                    <i class="fe fe-eye"></i>
+                  </div>
+                  <div class="edit">
+                    <i
+                      class="fe fe-edit"
+                      *ngIf="utilisateur.role == 'Manager'"
+                    ></i>
+                  </div>
+                </div>
+              </td>
+            </tr>
+
+            <!-- <tr class="alert" role="alert" (click)="openDialog()">
+                                            <td>
+                                                <label class="checkbox-wrap checkbox-primary">
+                                                    <input type="checkbox">
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                            </td>
+                                            <td class="d-flex align-items-center">
+                                                <div class="img" style="background-image: url(images/person_3.jpg);"></div>
+                                                <div class="pl-3 email">
+                                                    <span>larrybird@email.com</span>
+                                                    <span>Added: 01/03/2020</span>
+                                                </div>
+                                            </td>
+                                            <td>Larry_bird</td>
+                                            <td class="status"><span class="active">Active</span></td>
+                                            
+                                        </tr>
+                                        <tr class="alert" role="alert">
+                                            <td>
+                                                <label class="checkbox-wrap checkbox-primary">
+                                                    <input type="checkbox">
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                            </td>
+                                            <td class="d-flex align-items-center">
+                                                <div class="img" style="background-image: url(images/person_4.jpg);"></div>
+                                                <div class="pl-3 email">
+                                                    <span>johndoe@email.com</span>
+                                                    <span>Added: 01/03/2020</span>
+                                                </div>
+                                            </td>
+                                            <td>Johndoe1990</td>
+                                            <td class="status"><span class="active">Active</span></td>
+                                            
+                                        </tr>
+                                        <tr class="alert" role="alert">
+                                            <td class="border-bottom-0">
+                                                <label class="checkbox-wrap checkbox-primary">
+                                                    <input type="checkbox">
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                            </td>
+                                            <td class="d-flex align-items-center border-bottom-0">
+                                                <div class="img" style="background-image: url(images/person_1.jpg);"></div>
+                                                <div class="pl-3 email">
+                                                    <span>garybird@email.com</span>
+                                                    <span>Added: 01/03/2020</span>
+                                                </div>
+                                            </td>
+                                            <td class="border-bottom-0">Garybird_2020</td>
+                                            <td class="status border-bottom-0"><span class="waiting">Waiting for
+                                                    Resassignment</span></td>
+                                        
+                                        </tr>  -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+</div>

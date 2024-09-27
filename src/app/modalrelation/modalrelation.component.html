@@ -1,0 +1,23 @@
+<div class="card">
+    <div class="card-header">
+      <h2>les relations internes et externes</h2>
+    </div>
+    <div class="card-body">
+      <form>
+        <label for="name">Supérieur hiérarchique :</label>
+        <input type="text" id="name" name="name" required>
+  
+        <label for="email">Supérieur fonctionnel:</label>
+        <input type="email" id="email" name="email" required>
+  
+        <label for="phone">Relations hiérarchiques:</label>
+        <input type="tel" id="phone" name="phone" required>
+  
+        <label for="password">Relations fonctionnelles:</label>
+        <input type="password" id="password" name="password" required>
+      </form>
+    </div>
+    <div class="card-footer" style="text-align: center;">
+      <button (click)="closeModalRelation()">Sauvgarder</button>
+    </div>
+  </div>

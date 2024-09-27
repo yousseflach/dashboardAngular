@@ -1,0 +1,69 @@
+.card{
+    margin-top: 10px;
+    margin-left: 15px;
+}
+.card-img-top {
+    width: 60%;
+    border-radius: 50%;
+    margin: 0 auto;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  }
+  .card {
+    padding: 1.5em 0.5em 0.5em;
+    text-align: center;
+    border-radius: 2em;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  }
+  .card-title {
+    font-weight: bold;
+    font-size: 1.5em;
+  }
+  .btn-primary {
+    border-radius: 2em;
+    padding: 0.5em 1.5em;
+  }
+
+  .demandesuivre{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    
+  }
+.progress-card{
+    margin-right: 15px;
+    height: 1040%;
+}
+  @media screen and (max-width: 767px) {
+    .demandesuivre {
+      flex-direction: column;
+    }
+
+    .progress-card {
+     margin-right: 30px !important;
+     width:90%;
+    }
+
+  }
+
+  .new_timeline {
+    padding: 0 0 0 5px;
+    list-style: none;
+    position: relative;
+  }
+
+  .new_timeline li {
+    position: relative;
+    width: 10%;
+  }
+
+  .new_timeline li .bullet {
+    margin-left: 1%;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    position: absolute;
+    left: -1px;
+}
+.new_timeline li .desc div {
+    display: inline-block;
+}

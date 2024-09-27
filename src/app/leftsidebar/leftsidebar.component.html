@@ -1,0 +1,96 @@
+<nav class="sidebar" [class.closse]="isSidebarClosed">
+    <header>
+      <div class="image-text">
+        <span class="image">
+          <img src="assets/images/marjane/logo_marjane.png" alt="logo" />
+        </span>
+        <div class="text header-text">
+          <span class="name">Marjane Group</span>
+        </div>
+        <i class="bx bx-chevron-right toggle" (click)="toggleSidebar()"></i>
+      </div>
+    </header>
+    <div class="menu-bar">
+      <div class="menu">
+        <!-- <li class="search-box">
+          <i class="bx bx-search icon"></i>
+          <input type="search" placeholder="Search..." />
+        </li> -->
+        <ul class="menu-links">
+          <li class="nav-link">
+            <a href="/taches">
+              <i class="bx bx-briefcase icon"></i>
+              <span class="text nav-text">Taches</span>
+            </a>
+          </li>
+          <li class="nav-link">
+            <a href="/recrutement">
+              <i class="bx bx-group icon"></i>
+              <span class="text nav-text">Recrutement</span>
+            </a>
+          </li>
+          <li class="nav-link" *ngIf="utilisateur.role =='RH'">
+            <a (click)="setActive('Direction')" href="javascript:void(0)">
+              <i class="bx bx-pause icon"></i>
+              <span class="text nav-text">Direction</span>
+            </a>
+          </li>
+          <li class="nav-link" *ngIf="utilisateur.role =='RH'">
+            <a (click)="setActive('employee')" href="javascript:void(0)">
+              <i class="bx bx-user icon"></i>
+              <span class="text nav-text">Candidates</span>
+            </a>
+          </li>
+          <li class="nav-link">
+            <a (click)="setActive('activities')" href="javascript:void(0)">
+              <i class="bx bx-bell icon"></i>
+              <span class="text nav-text">Notifications</span>
+            </a>
+          </li>
+          <li class="nav-link">
+            <a (click)="setActive('holidays')" href="javascript:void(0)">
+              <i class="bx bx-wallet icon"></i>
+              <span class="text nav-text">Entretiens</span>
+            </a>
+          </li>
+          <li class="nav-link">
+            <a (click)="setActive('Calendrier')" href="/Calendrier">
+              <i class="bx bx-calendar icon"></i>
+              <span class="text nav-text">Calendrier</span>
+            </a>
+          </li>
+          <li class="nav-link" *ngIf="utilisateur.role =='RH'">
+            <a (click)="setActive('simulateur')" href="/bulletinpage">
+              <i class="bx bx-credit-card icon"></i>
+              <span class="text nav-text">Simulateur</span>
+            </a>
+          </li>
+          <li class="nav-link" *ngIf="utilisateur.role =='RH'">
+            <a  (click)="setActive('report')" href="javascript:void(0)">
+              <i class="bx bx-bar-chart icon"></i>
+              <span class="text nav-text">Dashboard</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="bottom-content">
+        <li class="">
+          <a href="#">
+            <i class="bx bx-log-out icon"></i>
+            <span class="text nav-text">Logout</span>
+          </a>
+        </li>
+        <li class="mode">
+            <div class="moon-sun">
+                <i class="bx bx-moon icon moon"></i>
+                <i class="bx bx-sun icon sun"></i>
+            </div>
+            <span class="mode-text text">{{ isDarkMode ? 'Light Mode' : 'Dark Mode' }}</span>
+            <div class="toggle-switch" (click)="toggleDarkMode()">
+                <span class="switch"></span>
+            </div>
+        </li>
+      </div>
+    </div>
+  </nav>
+  

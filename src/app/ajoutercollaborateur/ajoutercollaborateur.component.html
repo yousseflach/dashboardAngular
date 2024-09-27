@@ -1,0 +1,430 @@
+<div class="container">
+
+	<div class="form-wrap">
+		<div class="stepper-wrapper">
+			<div *ngFor="let step of steps" class="stepper-item" [ngClass]="step.status">
+				<div class="step-counter">{{ step.counter }}</div>
+				<div class="step-name">{{ step.name }}</div>
+			</div>
+		</div>
+
+		<form>
+			<!--===================================================form 1=============================================-->
+			<div *ngIf="formulaire1">
+				<div class="row">
+					<div class="col-md-6">
+						<div class="form-group select-container">
+							<label for="societe">Société </label>
+							<select name="societe" id="societe" class="form-control" [(ngModel)]="demandeModel.societe" >
+								<option [value]="societe.societe" *ngFor="let societe of listesocietes">{{societe.libelle}}</option>
+							</select>
+
+							<i class="fas fa-chevron-down select-icon"></i>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group select-container">
+							<label> Siége ou Magasin ou Fonction Central</label>
+							<select name="role" class="form-control" (change)="changeListe(fonction.value,demandeModel.societe)"  #fonction>
+								<option [value]="'siege'">siége ensigne</option>
+								<option [value]="'magasin'">magasin</option>
+								<option [value]="'fonctioncentral'" *ngIf="demandeModel.societe === 'COF'" selected>Fonction central</option>
+							</select>
+							<i class="fas fa-chevron-down select-icon"></i>
+						</div>
+					</div>
+
+					<div class="col-md-6">
+						<div class="form-group select-container">
+							<label>Liste Directions ou Magasins</label>
+							<select name="role" class="form-control" (change)="changeListeDemandeur($event)" [(ngModel)]="demandeModel.directionoumagasin">
+								<option [disabled]="true" [selected]="true">Choisir la direction ou magasin</option>
+								<option *ngFor="let direction of listedirectionoumagasin" [value]="direction">{{ direction }}</option>
+							</select>
+
+
+							<i class="fas fa-chevron-down select-icon"></i>
+						</div>
+
+					</div>
+
+					<div class="col-md-6">
+						<div class="form-group">
+							<label for="superieurHierarchique">Supérieur hiérarchique</label>
+							<input id="superieurHierarchique" type="text" name="superieurHierarchique"
+								class="form-control" [(ngModel)]="superieurhierarchique"
+								(input)="filterNames();listesousdirections(superieurhierarchique);changeemploiUO($event)"
+								placeholder="Supérieur hiérarchique" list="superiorList">
+							<datalist id="superiorList">
+								<option *ngFor="let name of filteredNames"
+									[value]="name.nom + ' ' + name.prenom + ' ' + name.matricule"></option>
+							</datalist>
+						</div>
+					</div>
+
+
+					<div class="col-md-6">
+						<div class="form-group select-container">
+							<label for="sousdirection">Direction cible </label>
+							<select name="sousdirection" id="sousdirection" [(ngModel)]="demandeModel.sousDirection"
+								(change)="recupereemploi($event)" class="form-control ">
+								<option value="{{sousdirection.code_uo}}"
+									*ngFor="let sousdirection of listesousdirection">
+									{{sousdirection.uo}}></option>
+							</select>
+							<i class="fas fa-chevron-down select-icon"></i>
+
+						</div>
+					</div>
+
+
+
+					<div class="col-md-6">
+						<div class="form-group select-container">
+							<label>Nature du recrutement</label>
+							<select name="role" class="form-control" [(ngModel)]="visibleselect"
+								[(ngModel)]="demandeModel.natureDeRecrutement" (change)="changeselect()">
+								<option value="cp">Création de poste</option>
+								<option value="Remplacement">Remplacement</option>
+							</select>
+							<i class="fas fa-chevron-down select-icon"></i>
+						</div>
+					</div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="poste">Poste à pourvoir</label>
+              <input
+                *ngIf="visibleselect !== 'Remplacement'"
+                type="text"
+                id="poste"
+                name="poste"
+                placeholder="Poste à pourvoir"
+                class="form-control"
+                [(ngModel)]="demandeModel.titrePoste"
+                list="postesList"
+              >
+              <datalist id="postesList">
+                <option *ngFor="let emploi of listesemplois" [value]="emploi"></option>
+              </datalist>
+
+              <select
+                *ngIf="visibleselect === 'Remplacement'"
+                id="poste"
+                name="poste"
+                class="form-control"
+                [(ngModel)]="demandeModel.titrePoste"
+                [ngStyle]="{'background-color': 'darkgray'}"
+              >
+                <option *ngFor="let emploi of listesemplois" [value]="emploi">{{ emploi }}</option>
+              </select>
+
+            </div>
+          </div>
+					<!-- input pour l ancien collaborateur si nature de recrutement est remplacement -->
+
+					<!-- <div class="col-md-6" *ngIf="demandeModel.natureDeRecrutement == 'Remplacement' ">
+						<div class="form-group">
+							<label for="ancienCollaborateur">Ancien collaborateur</label>
+							<input id="ancienCollaborateur" type="text" name="ancienCollaborateur"
+								class="form-control" [disabled]="true"
+								placeholder="Ancien collaborateur" list="ancienList">
+						<datalist id="ancienList">
+								<option *ngFor="let name of filteredNames"
+									[value]="name.nom + ' ' + name.prenom + ' ' + name.matricule"></option>
+							</datalist>
+						</div>
+					</div> -->
+					<div class="col-md-6" *ngIf="visibleselect == 'cp'">
+						<div class="form-group">
+							<label>Budgétisation du poste</label>
+							<div class="custom-control custom-radio custom-control-inline">
+								<input type="radio" class="custom-control-input" id="oui" name="posteBudgete"
+									[value]="true" [(ngModel)]="demandeModel.posteBudgete">
+								<label class="custom-control-label" for="oui">OUI</label>
+							</div>
+							<div class="custom-control custom-radio custom-control-inline">
+								<input type="radio" class="custom-control-input" id="non" name="posteBudgete"
+								  [value]="false" [(ngModel)]="demandeModel.posteBudgete">
+								<label class="custom-control-label" for="non">NON</label>
+							  </div>
+						</div>
+					</div>
+
+					<div class="col-md-6" *ngIf="visibleselect == 'cp'">
+						<div class="form-group">
+							<label>Quel est le motif de la création ?</label>
+							<div class="custom-control custom-radio custom-control-inline">
+								<input type="radio" class="custom-control-input" id="restructuration" name="motif"
+									value="Restructuration de l’entité" [(ngModel)]="demandeModel.motif">
+								<label class="custom-control-label" for="restructuration">Restructuration de
+									l’entité</label>
+							</div>
+							<div class="custom-control custom-radio custom-control-inline">
+								<input type="radio" class="custom-control-input" id="projetStrategique" name="motif"
+									value="Mise en place d’un projet stratégique" [(ngModel)]="demandeModel.motif">
+								<label class="custom-control-label" for="projetStrategique">Mise en place d’un projet
+									stratégique</label>
+							</div>
+							<div class="custom-control custom-radio custom-control-inline">
+								<input type="radio" class="custom-control-input" id="autre" name="motif"
+									[disabled]="true">
+								<label class="custom-control-label" for="autre">Autres, précisez…</label>
+								<input type="text" class="form-control" name="autreMotif"
+									placeholder="Précisez le motif" [(ngModel)]="demandeModel.motif">
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+
+
+					<div class="col-md-6" *ngIf="visibleselect != 'cp'">
+						<div class="form-group">
+							<label for="motif_depart">Motif de départ</label>
+							<div class="custom-control custom-radio custom-control-inline">
+								<input type="radio" class="custom-control-input" id="demission" name="motifDepart"
+									value="Démission" [(ngModel)]="demandeModel.motif">
+								<label class="custom-control-label" for="demission">Démission</label>
+							</div>
+							<div class="custom-control custom-radio custom-control-inline">
+								<input type="radio" class="custom-control-input" id="retraite" name="motifDepart"
+									value="Départ en retraite" [(ngModel)]="demandeModel.motif">
+								<label class="custom-control-label" for="retraite">Départ en retraite</label>
+							</div>
+							<div class="custom-control custom-radio custom-control-inline">
+								<input type="radio" class="custom-control-input" id="mobilite" name="motifDepart"
+									value="Mobilité interne" [(ngModel)]="demandeModel.motif">
+								<label class="custom-control-label" for="mobilite">Mobilité interne</label>
+							</div>
+							<div class="custom-control custom-radio custom-control-inline">
+								<input type="radio" class="custom-control-input" id="autre" name="motifDepart"
+									[disabled]="true">
+								<label class="custom-control-label" for="autre">Autres, précisez…</label>
+								<input type="text" class="form-control" name="autreMotif"
+									placeholder="Précisez le motif" [(ngModel)]="demandeModel.motif">
+							</div>
+						</div>
+					</div>
+
+
+
+				</div>
+			</div>
+			<!--===================================================form 2=============================================-->
+			<div *ngIf="formulaire2" class="form3">
+
+				<div class="row">
+					<div class="col-md-12" style="display: flex; justify-content: space-between">
+						<div class="form-group" style="width: 100%; margin-right: 10px;">
+							<div class="form-group" style="display: flex; flex-direction: column; gap: 7px;">
+								<div>
+									<label for="emploi">Superieur hiérarchique</label>
+									<input type="text" class="form-control" name="emploi" id="emploi"
+										[(ngModel)]="emploi" placeholder="Emploi"
+										style="margin-top: 4px; height: 45px; background-color: darkgray;"
+										[disabled]="true">
+								</div>
+								<div>
+									<label for=""></label>
+									<input type="text" class="form-control" name="uo" id="uo" [(ngModel)]="uo"
+										placeholder="UO"
+										style="margin-bottom: 3px; height: 45px; background-color: darkgray;"
+										[disabled]="true">
+								</div>
+
+							</div>
+						</div>
+						<div class="form-group" style="width: 100%;">
+							<label for="superviseurFonctionnel">Supérieur fonctionnel </label>
+							<!-- Lier demande.superviseurFonctionnel à ngModel -->
+							<textarea type="text" class="form-control" name="superviseurFonctionnel"
+								id="superviseurFonctionnel" [(ngModel)]="demandeModel.superviseurFonctionnel"
+								placeholder="Entrez votre message..."></textarea>
+						</div>
+
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12" style="display: flex; justify-content: space-between">
+						<div class="form-group" style="width: 100%; margin-right: 10px;">
+							<label for="relationsHierarchiques">Relations hiérarchiques </label>
+							<textarea class="form-control" name="relationsHierarchiques"
+								placeholder="Entrez votre message..." [(ngModel)]="demandeModel.relationsHierarchiques"
+								[disabled]="demandeModel.natureDeRecrutement != 'cp'"
+								[ngStyle]="{'background-color': demandeModel.natureDeRecrutement == 'cp' ? '#ECF0F4' : 'darkgrey'}">
+							</textarea>
+
+						</div>
+						<div class="form-group" style="width: 100%;">
+							<label for="relationsFonctionnelles">Relations fonctionnelles</label>
+							<textarea class="form-control" name="relationsFonctionnelles"
+								placeholder="Entrez votre message..." id="superviseurFonctionnel"
+								[(ngModel)]="demandeModel.relationsFonctionnelles"
+								[disabled]="desactiverTexterea"></textarea>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12" style="display: flex; justify-content: space-between">
+						<div class="form-group" style="width: 100%; margin-right: 10px;">
+							<label for="relationsExterne">Relations externes </label>
+							<textarea class="form-control" name="relationsExterne" placeholder="Entrez votre message..."
+								[(ngModel)]="demandeModel.relationsExterne" [disabled]="desactiverTexterea"></textarea>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--===================================================form 3=============================================-->
+			<div *ngIf="formulaire3" class="form4">
+				<div class="col-md-12">
+					<div class="col-md-12">
+						<div class="form-group">
+							<label>Missions </label>
+							<textarea class="form-control" name="missionGlobale" placeholder="Entrez votre message..."
+								[(ngModel)]="demandeModel.missionGlobale" [disabled]="desactiverTexterea"></textarea>
+						</div>
+						<div class="form-group" style="height: 340px;">
+							<label>Principales activités </label>
+							<textarea class="form-control" name="principalesActivites" placeholder="Entrez votre message..."
+								[(ngModel)]="demandeModel.principalesActivites" [disabled]="desactiverTexterea"
+								style="height: 100%;"></textarea>
+						</div>
+					</div>
+
+
+				</div>
+			</div>
+			<!--===================================================form 4=============================================-->
+			<div *ngIf="formulaire4" class="form3">
+				<div class="row">
+					<div class="col-md-12" style="display: flex; justify-content: space-between">
+						<div class="form-group" style="width: 100%; margin-right: 10px;">
+							<label for="formationcompetence">Formation et compétence requise </label>
+							<textarea class="form-control" name="formationcompetence"
+								placeholder="Entrez votre message..." [(ngModel)]="demandeModel.formation"
+								[disabled]="desactiverTexterea"></textarea>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12"
+						style="display: flex; justify-content: space-between; flex-wrap:nowrap; gap: 10px;">
+						<div class="form-group select-container" style="width: 100%;">
+							<label for="NE">Niveau d'Etude</label>
+							<select class="form-control" name="NE" [(ngModel)]="demandeModel.niveauDetude">
+								<option value="bac+2">BAC+2</option>
+								<option value="bac+3">BAC+3</option>
+								<option value="bac+4">BAC+4</option>
+								<option value="bac+5" selected>BAC+5</option>
+							</select>
+							<i class="fas fa-chevron-down select-icon"></i>
+						</div>
+						<div class="form-group select-container" style="width: 100%;">
+							<label for="NE">Niveau d'Experience</label>
+							<select class="form-control" name="NE" [(ngModel)]="demandeModel.niveauDexperience">
+								<option value="plus10ans" selected>Plus de 10 ans</option>
+								<option value="plus8ans">Plus de 8 ans</option>
+								<option value="plus5ans">Plus de 5 ans</option>
+								<option value="plus3ans">Plus de 3 ans</option>
+								<option value="plus2ans">Plus de 2 an</option>
+							</select>
+							<i class="fas fa-chevron-down select-icon"></i>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="form-group" style="width: 100%; margin-right: 10px;">
+						<label for="competencesTechniques">Compétences Techniques et Fonctionnelles </label>
+						<textarea class="form-control" name="competencesTechniques"
+							placeholder="Entrez votre message..." [(ngModel)]="demandeModel.competencesTechniques"
+							[disabled]="desactiverTexterea"></textarea>
+					</div>
+				</div>
+				<div class="row">
+					<div class="form-group" style="width: 100%;">
+						<label for="competencesManageriales">Compétences Comportementales et Managériales </label>
+						<textarea class="form-control" name="competencesManageriales"
+							placeholder="Entrez votre message..." [(ngModel)]="demandeModel.competencesManageriales"
+							[disabled]="desactiverTexterea"></textarea>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12" style="display: flex; justify-content: space-between">
+						<div class="form-group" style="width: 100%; margin-right: 10px;">
+							<label for="indicateurs">Indicateurs </label>
+							<textarea class="form-control" name="indicateurs" placeholder="Entrez votre message..."
+								[disabled]="desactiverTexterea" [(ngModel)]="demandeModel.indicateurs"></textarea>
+						</div>
+
+					</div>
+				</div>
+			</div>
+			<!-- ====================================================form 5============================================= -->
+			<div *ngIf="formulaire5" class="form5" style="margin-top: 8%; margin-left: 5%;">
+				<div class="col-md-12">
+					<div class="col-md-12" style="justify-content: space-around;">
+						<div class="col-md-6">
+							<div class="form-group">
+								<label>Type de contrat </label>
+								<div class="form-group">
+									<div class="custom-control custom-radio custom-control-inline">
+									  <input type="radio" id="contratCDI" name="contrat" class="custom-control-input" value="CDI" [(ngModel)]="demandeModel.typeContrat">
+									  <label class="custom-control-label" for="contratCDI">CDI</label>
+									</div>
+									<div class="custom-control custom-radio custom-control-inline">
+									  <input type="radio" id="contratCDD" name="contrat" class="custom-control-input" value="CDD" [(ngModel)]="demandeModel.typeContrat">
+									  <label class="custom-control-label" for="contratCDD">CDD</label>
+									</div>
+								  </div>
+								<div class="custom-control custom-checkbox custom-control-inline">
+									<input type="text" class="form-control" name="Autre"
+										[(ngModel)]="demandeModel.typeContrat" placeholder="Autres, précisez…">
+								</div>
+							</div>
+						</div>
+
+						<div class="col-md-6" style="margin-top: 50px;">
+							<div class="form-group">
+								<label>Type de recrutement</label>
+								<div class="custom-control custom-radio custom-control-inline">
+									<input type="radio" class="custom-control-input" id="mobilite" name="recrutement"
+										value="Mobilité interne" [(ngModel)]="demandeModel.typeRecrutement">
+									<label class="custom-control-label" for="mobilite">Mobilité interne</label>
+								</div>
+								<div class="custom-control custom-radio custom-control-inline">
+									<input type="radio" class="custom-control-input" id="recrutement" name="recrutement"
+										value="Recrutement externe" [(ngModel)]="demandeModel.typeRecrutement">
+									<label class="custom-control-label" for="recrutement">Recrutement externe</label>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-md-6" style="margin-top: 50px;">
+							<div class="form-group select-container">
+								<label for="categorie">Catégorie</label>
+								<select class="form-control" name="categorie" [(ngModel)]="demandeModel.categorie">
+									<option value="CSU">CSU</option>
+									<option value="CAD">CAD</option>
+									<option value="MAI">MAI</option>
+									<option value="EMP">EMP</option>
+								</select>
+								<i class="fas fa-chevron-down select-icon"></i>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row"
+				style="margin-top: 45px; display: flex; flex-direction: row; justify-content: space-between;">
+				<div class="col-md-8" style=" width: 0px;display: flex; gap: 10px;">
+					<button type="submit" class="btn btn-secondary" (click)="Precedent()">Précédent</button>
+					<button type="submit" class="btn btn-primary" (click)="Suivant()">Suivant</button>
+				</div>
+				<div class="col-md-8 d-flex justify-content-end" style=" width: 0px;">
+					<button type="submit" class="btn btn-success" (click)="soumettre()">Sauvegarder</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>

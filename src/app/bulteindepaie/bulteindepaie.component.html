@@ -1,0 +1,355 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"
+    integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-sm-12 col-md-12">
+            <div class="card">
+                <div class="card-header"> 
+                    <div class="row g-3 align-items-center">
+                        <div class="col-md">
+                             <!-- Champ pour l'Ancienneté -->
+                        <div class="col-md " >
+                            <label for="anciennete" class="form-label">Ancienneté</label>
+                            <input type="number" class="form-control" id="anciennete"
+                                placeholder="Entrez votre ancienneté" [(ngModel)]="choix.anciennte">
+                        </div>
+                        </div>
+                        <div class="col-md">
+                            <label for="representation" class="form-label">representation</label>
+                            <input type="number" class="form-control" id="representation"
+                                placeholder="Entrez votre representation" [(ngModel)]="choix.representation">
+                        </div>
+                        <div class="col-md">
+                            <label for="transport" class="form-label">transport</label>
+                            <input type="number" class="form-control" id="transport"
+                                placeholder="Entrez votre transport" [(ngModel)]="choix.transport">
+                        </div>
+                        <div class="col-md">
+                            <label for="logement" class="form-label">Logement</label>
+                            <input type="number" class="form-control" id="logement"
+                                placeholder="Entrez votre logement" [(ngModel)]="choix.logement" >
+                        </div>
+                       
+                        <!-- Champ pour le Salaire Net -->
+                        <div class="col-md ">
+                            <label for="salaireNet" class="form-label">Salaire Net</label>
+                            <input type="number" class="form-control" id="salaireNet"
+                                placeholder="Entrez votre salaire net" [(ngModel)]="choix.SalaireNet">
+                        </div>
+
+                        <!-- Select pour le statut CAD ou MAIT -->
+                        <div class="col-md ">
+                            <label for="statut" class="form-label">Statut</label>
+                            <select class="form-select" id="statut" [(ngModel)]="choix.type" (ngModelChange)="getlogement()">
+                                <option value="cad">CAD</option>
+                                <option value="mait">MAIT</option>
+                                <option value="csu">CSU</option>
+                            </select>
+                        </div>
+                       <!-- <div class="col-md">
+                            <label for="statut" class="form-label">direction</label>
+                            <div id="bulletin-container">
+                                <div>
+                                    {{calculerbuletintest()}}
+                                 <p>cnss:{{bulletintest.retenueCnss}}</p>
+                                 <p>cmr:{{bulletintest.retenueCmr}}</p>
+                                 <p>ir:{{bulletintest.ir}}</p>
+                                 <p>amo:{{bulletintest.amo}}</p>
+                                 <p>representation:{{bulletintest.representation}}</p>
+                                 <p>transport:{{bulletintest.transport}}</p>
+                                 <p>anciennete:{{bulletintest.anciennte}}</p>
+                                 <p>logement:{{bulletintest.logement}}</p>
+                                 <p>salaireNetImposable:{{bulletintest.salaireNetImposable}}</p>
+                                 <p>salaireNet:{{bulletintest.salaireNet}}</p>
+                                </div>
+                              </div>
+                        </div>-->
+
+                        <!-- Select pour le lieu du premier emploi -->
+                        <div class="col-md ">
+                            <label for="lieuPremierEmploi" class="form-label">type d'emploi</label>
+                            <select class="form-select" id="lieuPremierEmploi" [(ngModel)]="choix.statut"  >
+                                <option value="premieremploi" *ngIf="choix.type != 'csu'">exonération IR sans Amo</option>
+                                <option value="filliale">Avec Amo</option>
+                                <option value="siege">Sans Amo</option>
+                                <option value="fillialePremierEmploi" *ngIf="choix.type != 'csu'"> exonération IR avec Amo</option>
+                                <option value="cadadjoint" *ngIf="choix.type == 'cad'">Cadre adjoint</option>
+
+                            </select>
+                        </div>
+                      
+                        <!-- <div>
+                            <p>filliale:{{calculerbuletintest()}}</p>
+                            <p>cnss:{{bulletintest.retenueCnss}}</p>
+                            <p>cmr:{{bulletintest.retenueCmr}}</p>
+                            <p>ir:{{bulletintest.ir}}</p>
+                            <p>amo:{{bulletintest.amo}}</p>
+                            <p>representation:{{bulletintest.representation}}</p>
+                            <p>transport:{{bulletintest.transport}}</p>
+                            <p>anciennete:{{bulletintest.anciennte}}</p>
+                            <p>logement:{{bulletintest.logement}}</p>
+                            <p>salaireNetImposable:{{bulletintest.salaireNetImposable}}</p>
+                            <p>salaireNet:{{bulletintest.logement}}</p>
+                        </div> -->
+                    </div>
+
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive" tabindex="2" style="height: 100%; width: 100%; ">
+                        <table class="table table-striped">
+                            <thead class="thead-light">
+                                <tr >
+                                    <th >Project</th>
+                                    <th> ELTS
+                                        MENSUEL
+                                    </th>
+                                    <th>Nombre
+                                        de mois
+                                    </th>
+                                    <th>Base
+                                    </th>
+                                    <th>Charges
+                                        Patronales
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <h6 class="mb-0 font-15">SALAIRE</h6>
+                                    </td>
+                                    <td>{{calculerSalairedebase(choix.SalaireNet,choix.anciennte,choix.type,choix.statut,choix.representation,choix.transport,choix.logement).toFixed(2)}}</td>
+                                    <td class="text-truncate">
+                                        12
+                                    </td>
+                                    <td>
+                                        <div class="badge-outline col-red"> {{(bulletin.salairedebase * 12).toFixed(2)}}</div>
+                                    </td>
+                                    <td class="align-middle">
+
+                                    </td>
+
+                                </tr>
+                                <tr>
+
+                                    <td>
+                                        <h6 class="mb-0 font-15">ANCIENNETE</h6>
+
+                                    </td>
+                                    <td>{{bulletin.anciennte.toFixed(2)}}</td>
+                                    <td class="text-truncate">
+                                              12
+                                    </td>
+                                    <td>
+                                        <div class="badge-outline col-green">{{(bulletin.anciennte * 12).toFixed(2)}}</div>
+                                    </td>
+                                    <td class="align-middle">
+
+                                    </td>
+
+                                </tr>
+                                <tr>
+
+                                    <td>
+                                        <h6 class="mb-0 font-15">IND. LOGEMENT</h6>
+
+                                    </td>
+                                    <td>{{bulletin.logement}}</td>
+                                    <td class="text-truncate">
+ 12
+                                    </td>
+                                    <td>
+                                        <div class="badge-outline col-blue">{{(bulletin.logement * 12).toFixed(2)}}</div>
+                                    </td>
+                                    <td class="align-middle">
+
+                                    </td>
+
+                                </tr>
+                            
+                                <tr>
+
+                                    <td>
+                                        <h6 class="mb-0 font-15">C.N.S.S.
+                                        </h6>
+
+                                    </td>
+                                    <td>{{bulletin.retenueCnss.toFixed(2)}}</td>
+                                    <td class="text-truncate">
+12
+                                    </td>
+                                    <td>
+                                        <div class="badge-outline col-blue"> {{(bulletin.retenueCnss * 12).toFixed(2)}}</div>
+                                    </td>
+                                    <td class="align-middle">
+                                        {{this.chargepatronal.cnss.toFixed(2)}}
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h6 class="mb-0 font-15">C.I.M.R.
+                                        </h6>
+                                    </td>
+                                    <td>{{bulletin.retenueCmr.toFixed(2)}}</td>
+                                    <td class="text-truncate">
+                                        12
+                                    </td>
+                                    <td>
+                                        <div class="badge-outline col-green">{{(bulletin.retenueCmr * 12).toFixed(2)}}</div>
+                                    </td>
+                                    <td class="align-middle">
+                                        {{this.chargepatronal.cmr.toFixed(2)}}
+                                    </td>
+
+                                </tr>
+                                <tr >
+
+                                    <td>
+                                        <h6 class="mb-0 font-15">AMO
+                                        </h6>
+
+                                    </td>
+                                    <td>{{bulletin.amo.toFixed(2)}}</td>
+                                    <td class="text-truncate">
+                                               12
+                                    </td>
+                                    <td>
+                                        <div class="badge-outline col-red"> {{(bulletin.amo * 12).toFixed(2)}}</div>
+                                    </td>
+                                    <td class="align-middle">
+                                        {{this.chargepatronal.amo.toFixed(2)}}
+                                    </td>
+
+                                </tr>
+                                <tr>
+
+                                    <td>
+                                        <h6 class="mb-0 font-15">CNSS AMO
+
+                                        </h6>
+
+                                    </td>
+                                    <td>0</td>
+                                    <td class="text-truncate">
+12
+                                    </td>
+                                    <td>
+                                        <div class="badge-outline col-green">0</div>
+                                    </td>
+                                    <td class="align-middle">
+                                            
+                                    </td>
+
+                                </tr>
+                                <tr>
+
+                                    <td>
+                                        <h6 class="mb-0 font-15">BASE IMPO.
+
+                                        </h6>
+
+                                    </td>
+                                    <td>0</td>
+                                    <td class="text-truncate">
+12
+                                    </td>
+                                    <td>
+                                        <div class="badge-outline col-green"> 0</div>
+                                    </td>
+                                    <td class="align-middle">
+
+                                    </td>
+
+                                </tr>
+                                <tr>
+
+                                    <td>
+                                        <h6 class="mb-0 font-15">IGR
+
+                                        </h6>
+
+                                    </td>
+                                    <td>{{bulletin.ir.toFixed(2)}}</td>
+                                    <td class="text-truncate">
+12
+                                    </td>
+                                    <td>
+                                        <div class="badge-outline col-green"> {{(bulletin.ir * 12).toFixed(2)}}</div>
+                                    </td>
+                                    <td class="align-middle">
+                                           {{this.chargepatronal.ir.toFixed(2)}}
+                                    </td>
+
+                                </tr>
+                                <tr>
+
+                                    <td>
+                                        <h6 class="mb-0 font-15">IND. TRANSPORT
+
+                                        </h6>
+
+                                    </td>
+                                    <td>{{bulletin.transport}}</td>
+                                    <td class="text-truncate">
+12
+                                    </td>
+                                    <td>
+                                        <div class="badge-outline col-green"> {{(bulletin.transport * 12).toFixed(2)}}</div>
+                                    </td>
+                                    <td class="align-middle">
+
+                                    </td>
+
+                                </tr>
+                                <tr>
+
+                                    <td>
+                                        <h6 class="mb-0 font-15">IND. REPRESENTATION
+
+                                        </h6>
+
+                                    </td>
+                                    <td>{{bulletin.representation.toFixed(2)}}</td>
+                                    <td class="text-truncate">
+12
+                                    </td>
+                                    <td>
+                                        <div class="badge-outline col-green"> {{(bulletin.representation * 12).toFixed(2)}}</div>
+                                    </td>
+                                    <td class="align-middle">
+
+                                    </td>
+
+                                </tr>
+                                <tr >
+
+                                    <td>
+                                        <h6 class="mb-0 font-13" style="font-size: larger;">NET A PAYER
+
+                                        </h6>
+
+                                    </td>
+                                    <td style="font-size: larger; font-weight: bold;">{{bulletin.salaireNet.toFixed(2)}}</td>
+                                    <td class="text-truncate">
+12
+                                    </td>
+                                    <td>
+                                        <div class="badge-outline col-green" style="font-weight: bold;"> {{(bulletin.salaireNet * 12).toFixed(2)}}</div>
+                                    </td>
+                                    <td class="align-middle">
+                                     CTE:{{getCTE().toFixed(2)}}
+                                    </td>
+
+                                </tr>
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

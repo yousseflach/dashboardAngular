@@ -1,0 +1,267 @@
+/*!
+ * Bootstrap v4.3.1 (https://getbootstrap.com/)
+ * Copyright 2011-2019 The Bootstrap Authors
+ * Copyright 2011-2019 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ */
+:root {
+  --blue: #007bff;
+  --indigo: #6610f2;
+  --purple: #6f42c1;
+  --pink: #e83e8c;
+  --red: #dc3545;
+  --orange: #fd7e14;
+  --yellow: #ffc107;
+  --green: #28a745;
+  --teal: #20c997;
+  --cyan: #17a2b8;
+  --white: #fff;
+  --gray: #6c757d;
+  --gray-dark: #343a40;
+  --primary: #007bff;
+  --secondary: #6c757d;
+  --success: #28a745;
+  --info: #17a2b8;
+  --warning: #ffc107;
+  --danger: #dc3545;
+  --light: #f8f9fa;
+  --dark: #343a40;
+  --breakpoint-xs: 0;
+  --breakpoint-sm: 576px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 992px;
+  --breakpoint-xl: 1200px;
+  --font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+}
+
+*,
+*::after {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.with-sidebar {
+  left: 250px;
+  padding: 3px;
+  transition: left 0.3s ease, padding-left 0.3s ease; /* Add transitions for left and padding changes */
+}
+
+/* Remove padding when the sidebar is hidden */
+.without-sidebar {
+  left: 25px;
+  padding: 3px;
+  transition: left 0.3s ease, padding-left 0.3s ease; /* Add transitions for left and padding changes */
+}
+
+.ftco-section {
+  padding: 1em 0;
+}
+.table-wrap {
+  width: 100%;
+  overflow-x: auto; /* Allow horizontal scrolling */
+  /* cacher la barre de scroll */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+.table-wrap::-webkit-scrollbar {
+  -webkit-box-shadow: 0px 5px 12px -12px rgba(0, 0, 0, 0.29);
+  -moz-box-shadow: 0px 5px 12px -12px rgba(0, 0, 0, 0.29);
+  box-shadow: 0px 5px 12px -12px rgba(0, 0, 0, 0.29);
+}
+
+.table {
+  width: 100%;
+  -webkit-box-shadow: 0px 5px 12px -12px rgba(0, 0, 0, 0.29);
+  -moz-box-shadow: 0px 5px 12px -12px rgba(0, 0, 0, 0.29);
+  box-shadow: 0px 5px 12px -12px rgba(0, 0, 0, 0.29);
+}
+/* overflow-x */
+
+.table thead th {
+  border: none;
+  padding: 30px;
+  font-size: 13px;
+  font-weight: 500;
+  color: gray;
+}
+
+.table thead tr {
+  background: #fff;
+  border-bottom: 4px solid #eceffa;
+}
+
+.table tbody tr {
+  margin-bottom: 10px;
+  border-bottom: 4px solid #f8f9fd;
+}
+
+.table tbody tr:last-child {
+  border-bottom: 0;
+}
+
+.table tbody th,
+.table tbody td {
+  border: none;
+  padding: 30px;
+  font-size: 14px;
+  background: #fff;
+  vertical-align: middle;
+}
+
+.table tbody td.status span {
+  position: relative;
+  border-radius: 30px;
+  padding: 4px 10px 4px 25px;
+}
+
+.table tbody td.status span:after {
+  position: absolute;
+  top: 9px;
+  left: 10px;
+  width: 10px;
+  height: 10px;
+  content: "";
+  border-radius: 50%;
+}
+
+.table tbody td.status .active {
+  background: #cff6dd;
+  color: #1fa750;
+}
+
+.table tbody td.status .active:after {
+  background: #23bd5a;
+}
+
+.table tbody td.status .waiting {
+  background: #fdf5dd;
+  color: #cfa00c;
+}
+
+.table tbody td.status .waiting:after {
+  background: #f2be1d;
+}
+
+.table tbody td .img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.table tbody td .email span {
+  display: block;
+}
+
+.table tbody td .email span:last-child {
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.3);
+}
+
+.table tbody td .close span {
+  font-size: 12px;
+  color: #dc3545;
+}
+
+.checkbox-wrap {
+  display: block;
+  position: relative;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.checkbox-wrap input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "\f0c8";
+  font-family: "FontAwesome";
+  position: absolute;
+  color: rgba(0, 0, 0, 0.1);
+  font-size: 20px;
+  margin-top: -14px;
+  -webkit-transition: 0.3s;
+  -o-transition: 0.3s;
+  transition: 0.3s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .checkmark:after {
+    -webkit-transition: none;
+    -o-transition: none;
+    transition: none;
+  }
+}
+
+/* Show the checkmark when checked */
+.checkbox-wrap input:checked ~ .checkmark:after {
+  display: block;
+  content: "\f14a";
+  font-family: "FontAwesome";
+  color: rgba(0, 0, 0, 0.2);
+}
+
+/* Style the checkmark/indicator */
+.checkbox-primary {
+  color: #40bfc1;
+}
+
+.checkbox-primary input:checked ~ .checkmark:after {
+  color: #40bfc1;
+}
+
+.action {
+  display: flex;
+  flex-direction: row;
+  gap: 32px;
+  align-items: center;
+}
+
+.content {
+  flex: 1;
+  position: fixed;
+  top: 80px; /* Adjust this value to match the height of your header */
+  /* Adjust this value to match the width of your sidebar */
+  right: 0;
+  bottom: 0;
+
+  overflow-y: auto;
+  z-index: 999; /* Ensure the content is above the sidebar */
+}
+
+.with-sidebar {
+  left: 250px;
+  padding: 3px;
+  transition: left 0.3s ease, padding-left 0.3s ease; /* Add transitions for left and padding changes */
+}
+
+/* Remove padding when the sidebar is hidden */
+.without-sidebar {
+  left: 88px;
+  padding: 3px;
+  transition: left 0.3s ease, padding-left 0.3s ease; /* Add transitions for left and padding changes */
+}
+
+

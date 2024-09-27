@@ -1,0 +1,1446 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "OpenAPI definition",
+    "version": "v0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8080/api/v1",
+      "description": "Generated server url"
+    }
+  ],
+  "paths": {
+    "/utilisateurs": {
+      "get": {
+        "tags": [
+          "utilisateur-controller"
+        ],
+        "operationId": "getAllUtilisateurs",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/UtilisateurDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "utilisateur-controller"
+        ],
+        "operationId": "updateUtilisateur",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UtilisateurDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UtilisateurDto"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "utilisateur-controller"
+        ],
+        "operationId": "createUtilisateur",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UtilisateurDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UtilisateurDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/taches": {
+      "get": {
+        "tags": [
+          "tache-controller"
+        ],
+        "operationId": "getAllTaches",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TacheDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "tache-controller"
+        ],
+        "operationId": "updateTache",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TacheDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TacheDto"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "tache-controller"
+        ],
+        "operationId": "createTache",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TacheDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TacheDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/notifications/{id}": {
+      "get": {
+        "tags": [
+          "notification-controller"
+        ],
+        "operationId": "getNotificationById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotificationDto"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "notification-controller"
+        ],
+        "operationId": "updateNotification",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NotificationDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotificationDto"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "notification-controller"
+        ],
+        "operationId": "deleteNotification",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/interviews/{id}": {
+      "get": {
+        "tags": [
+          "interview-controller"
+        ],
+        "operationId": "getInterviewById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InterviewDto"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "interview-controller"
+        ],
+        "operationId": "updateInterview",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InterviewDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InterviewDto"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "interview-controller"
+        ],
+        "operationId": "deleteInterview",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/direction-ou-magasins/{id}": {
+      "get": {
+        "tags": [
+          "direction-ou-magasin-controller"
+        ],
+        "operationId": "getDirectionOuMagasinById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DirectionOuMagasinDto"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "direction-ou-magasin-controller"
+        ],
+        "operationId": "updateDirectionOuMagasin",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DirectionOuMagasinDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DirectionOuMagasinDto"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "direction-ou-magasin-controller"
+        ],
+        "operationId": "deleteDirectionOuMagasin",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/collaborateur": {
+      "get": {
+        "tags": [
+          "collaborateur-controller"
+        ],
+        "operationId": "getAllCollaborateurs",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CollaborateurDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "collaborateur-controller"
+        ],
+        "operationId": "updateTache_1",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CollaborateurDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CollaborateurDto"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "collaborateur-controller"
+        ],
+        "operationId": "createCollaborateur",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CollaborateurDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CollaborateurDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/candidates/{id}": {
+      "get": {
+        "tags": [
+          "candidate-controller"
+        ],
+        "operationId": "getCandidateById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CandidatDto"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "candidate-controller"
+        ],
+        "operationId": "updateCandidate",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CandidatDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CandidatDto"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "candidate-controller"
+        ],
+        "operationId": "deleteCandidate",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/Stagiaire": {
+      "get": {
+        "tags": [
+          "stage-controller"
+        ],
+        "operationId": "getAllStages",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/StageDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "stage-controller"
+        ],
+        "operationId": "updateTache_2",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StageDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StageDto"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "stage-controller"
+        ],
+        "operationId": "createStage",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StageDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StageDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/notifications": {
+      "get": {
+        "tags": [
+          "notification-controller"
+        ],
+        "operationId": "getAllNotifications",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/NotificationDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "notification-controller"
+        ],
+        "operationId": "createNotification",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NotificationDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotificationDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/interviews": {
+      "get": {
+        "tags": [
+          "interview-controller"
+        ],
+        "operationId": "getAllInterviews",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/InterviewDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "interview-controller"
+        ],
+        "operationId": "createInterview",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InterviewDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InterviewDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/direction-ou-magasins": {
+      "get": {
+        "tags": [
+          "direction-ou-magasin-controller"
+        ],
+        "operationId": "getAllDirectionOuMagasins",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DirectionOuMagasinDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "direction-ou-magasin-controller"
+        ],
+        "operationId": "createDirectionOuMagasin",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DirectionOuMagasinDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DirectionOuMagasinDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/candidates": {
+      "get": {
+        "tags": [
+          "candidate-controller"
+        ],
+        "operationId": "findAll",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CandidatDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "candidate-controller"
+        ],
+        "operationId": "createCandidate",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CandidatDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CandidatDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/utilisateurs/{id}": {
+      "get": {
+        "tags": [
+          "utilisateur-controller"
+        ],
+        "operationId": "getUtilisateurById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UtilisateurDto"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "utilisateur-controller"
+        ],
+        "operationId": "deleteUtilisateur",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/taches/{id}": {
+      "get": {
+        "tags": [
+          "tache-controller"
+        ],
+        "operationId": "getTacheById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TacheDto"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "tache-controller"
+        ],
+        "operationId": "deleteTache",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/collaborateur/{id}": {
+      "get": {
+        "tags": [
+          "collaborateur-controller"
+        ],
+        "operationId": "getCollaborateurById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CollaborateurDto"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "collaborateur-controller"
+        ],
+        "operationId": "deleteCollaborateur",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/collaborateur/request": {
+      "get": {
+        "tags": [
+          "collaborateur-controller"
+        ],
+        "operationId": "request",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Stagiaire/{id}": {
+      "get": {
+        "tags": [
+          "stage-controller"
+        ],
+        "operationId": "getStageById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StageDto"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "stage-controller"
+        ],
+        "operationId": "deleteStage",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "UtilisateurDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "nom": {
+            "type": "string"
+          },
+          "prenom": {
+            "type": "string"
+          },
+          "uniteOrganisationnelle": {
+            "type": "string"
+          },
+          "direction": {
+            "type": "string"
+          },
+          "enseigneGroupe": {
+            "type": "string"
+          },
+          "adresseEmail": {
+            "type": "string"
+          },
+          "matriculeN1": {
+            "type": "string"
+          },
+          "matriculeN2": {
+            "type": "string"
+          },
+          "matriculeCOMEX": {
+            "type": "string"
+          },
+          "dateDeCreation": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "dateDeModification": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "TacheDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "objet": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "idDemande": {
+            "type": "string"
+          },
+          "idUtilisateur": {
+            "type": "string"
+          },
+          "dateDeCreation": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "dateDeModification": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "NotificationDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "objet": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "userId": {
+            "type": "string"
+          },
+          "dateDeCreation": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "dateDeModification": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "InterviewDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "responsableId": {
+            "type": "string"
+          },
+          "candidatId": {
+            "type": "string"
+          },
+          "createur": {
+            "type": "string"
+          },
+          "evaluationDuCandidat": {
+            "type": "string"
+          },
+          "dateDeCreation": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "dateDeModification": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "DirectionOuMagasinDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "nom": {
+            "type": "string"
+          },
+          "dateDeCreation": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "dateDeModification": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "CollaborateurDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "titre": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "siteRattachement": {
+            "type": "string"
+          },
+          "direction": {
+            "type": "string"
+          },
+          "magasin": {
+            "type": "string"
+          },
+          "titrePoste": {
+            "type": "string"
+          },
+          "superviseur": {
+            "type": "string"
+          },
+          "competencesTechniques": {
+            "type": "string"
+          },
+          "competencesManageriales": {
+            "type": "string"
+          },
+          "dateDeCreation": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "dateDeModification": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "natureDeRecrutement": {
+            "type": "string"
+          },
+          "motifCreation": {
+            "type": "string"
+          },
+          "posteBudgete": {
+            "type": "boolean"
+          },
+          "budgetEstime": {
+            "type": "number"
+          },
+          "collaborateurARemplacer": {
+            "type": "string"
+          },
+          "motifDepart": {
+            "type": "string"
+          },
+          "superviseurFonctionnel": {
+            "type": "string"
+          },
+          "relationsHierarchiques": {
+            "type": "string"
+          },
+          "relationsFonctionnelles": {
+            "type": "string"
+          },
+          "relationsExterne": {
+            "type": "string"
+          },
+          "missionGlobale": {
+            "type": "string"
+          },
+          "principalesActivites": {
+            "type": "string"
+          },
+          "formation": {
+            "type": "string"
+          },
+          "experience": {
+            "type": "string"
+          },
+          "competenceTechnique": {
+            "type": "string"
+          },
+          "competenceManagerial": {
+            "type": "string"
+          },
+          "indicateursQuantitatifs": {
+            "type": "string"
+          },
+          "indicateursQualitatifs": {
+            "type": "string"
+          },
+          "typeContrat": {
+            "type": "string"
+          },
+          "categorie": {
+            "type": "string"
+          },
+          "typeRecrutement": {
+            "type": "string"
+          }
+        }
+      },
+      "CandidatDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "demandeId": {
+            "type": "string"
+          },
+          "createur": {
+            "type": "string"
+          },
+          "cv": {
+            "type": "string"
+          },
+          "dateDeCreation": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "dateDeModification": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "StageDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "titre": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "siteRattachement": {
+            "type": "string"
+          },
+          "direction": {
+            "type": "string"
+          },
+          "magasin": {
+            "type": "string"
+          },
+          "titrePoste": {
+            "type": "string"
+          },
+          "superviseur": {
+            "type": "string"
+          },
+          "competencesTechniques": {
+            "type": "string"
+          },
+          "competencesManageriales": {
+            "type": "string"
+          },
+          "dateDeCreation": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "dateDeModification": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "stageType": {
+            "type": "string"
+          },
+          "formationCandidat": {
+            "type": "string"
+          },
+          "niveauEducation": {
+            "type": "string"
+          },
+          "ecolesPreferees": {
+            "type": "string"
+          },
+          "natureDuStage": {
+            "type": "string"
+          },
+          "dureeDuStage": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "dateDeDebut": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "contenuDuStage": {
+            "type": "string"
+          },
+          "livrableAttendu": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

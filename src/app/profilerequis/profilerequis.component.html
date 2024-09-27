@@ -1,0 +1,146 @@
+<div class="closeModel">
+  <span class="close" (click)="closeModal()"></span>
+</div>
+<div class="container">
+  <ul class="nav nav-tabs" id="myTab" role="tablist">
+    <div class="nav-item">
+      <h3>Contexte de la demande</h3>
+      <li class="nav-item">
+        <h6>Intitulé du poste: </h6>
+        <p>{{demande.titrePoste}}</p>
+      </li>
+      <li class="nav-item">
+        <h6>Direction/Magasin:</h6>
+        <p>{{demande.directionoumagasin}} </p>
+
+      </li>
+
+      <li class="nav-item">
+        <h6>Supérieur hiérarchique:</h6>
+        <p>{{demande.superviseurFonctionnel}}</p>
+      </li>
+      <li class="nav-item">
+        <h6>Site de rattachement: </h6>
+        <p>{{demande.siteRattachement}}</p>
+      </li>
+      <li class="nav-item">
+        <h6>Nature du recrutement: </h6>
+        <p *ngIf="demande.natureDeRecrutement=='cp'; else remplacement">
+          Création de poste.
+        </p>
+        <ng-template #remplacement>
+          <p>Remplacement</p>
+        </ng-template>
+      </li>
+      <li class="nav-item">
+        <h6>Motif de recrutement:</h6>
+        <p>{{demande.motif}}</p>
+      </li>
+      <li class="nav-item">
+        <h6>Budgétisation du poste:</h6>
+        <section *ngIf="demande.posteBudgete; else nonbudget">
+          <p>OUI</p>.
+        </section>
+        <ng-template #nonbudget>
+          <p>NON</p>
+        </ng-template>
+      </li>
+    </div>
+    <div class="nav-item">
+      <h3>Relations</h3>
+      <li class="nav-item">
+        <h6>Supérieur hiérarchiques:</h6>
+        <p>{{demande.superviseurFonctionnel}}</p>
+      </li>
+      <li class="nav-item">
+        <h6>Relations hiérarchiques:</h6>
+        <p>{{demande.relationsHierarchiques}}</p>
+      </li>
+      <li class="nav-item">
+        <h6>Relations fonctionnelles:</h6>
+        <p>{{demande.relationsFonctionnelles}}</p>
+      </li>
+      <li class="nav-item">
+        <h6>Supérieur fonctionnel:</h6>
+        <p>{{demande.superviseurFonctionnel}}</p>
+      </li>
+
+      <li class="nav-item">
+        <h6>Relations externe:</h6>
+        <p>{{demande.relationsExterne}}</p>
+      </li>
+    </div>
+    <div class="nav-item">
+      <h3>Mission globale</h3>
+      <li class="nav-item" style="height:fit-content;">
+        <p>{{demande.missionGlobale}}</p>
+      </li>
+    </div>
+    <div class="nav-item">
+      <h3>Principales activités</h3>
+      <li class="nav-item">
+        <p>{{demande.principalesActivites}}</p>
+      </li>
+    </div>
+    <div class="nav-item">
+      <h3>Profil requis</h3>
+      <li class="nav-item">
+        <h6>Formation:</h6>
+        <p>{{demande.formation}}</p>
+      </li>
+      <li class="nav-item">
+        <h6>Niveau d’expérience :</h6>
+        <p>{{demande.niveauDexperience}}</p>
+      </li>
+      <li class="nav-item">
+        <h6>Niveau d'etude:</h6>
+        <p>{{demande.niveauDetude}}</p>
+      </li>
+      <li class="nav-item">
+        <h6>Compétences techniques:</h6>
+        <p>{{demande.competencesTechniques}}</p>
+      </li>
+      <li class="nav-item">
+        <h6>Compétences comportementales et managériales:</h6>
+        <p></p>
+      </li>
+    </div>
+    <div class="nav-item">
+      <h3> Indicateurs de performance </h3>
+      <li class="nav-item">
+        <p>{{demande.indicateurs}}</p>
+      </li>
+    </div>
+    <div class="nav-item">
+      <h3>Modalités de recrutement:</h3>
+      <li class="nav-item">
+        <h6>Type de recrutement:</h6>
+        <p>{{demande.typeRecrutement}}</p>
+      </li>
+      <li class="nav-item">
+        <h6>Catégorie:</h6>
+        <p>{{demande.categorie}}</p>
+      </li>
+      <li class="nav-item">
+        <h6>Type de contrat:</h6>
+        <p>{{demande.typeContrat}}</p>
+      </li>
+    </div>
+
+  </ul>
+  <div class="btn-group" *ngIf="buttonText == 'Validation'">
+    <button type="submit" class="btn btn-danger rounded" (click)="rejeter()"
+      *ngIf="demande.matricule!=matricule">Rejeter</button>
+    <button type="submit" class="btn btn-primary rounded" (click)="valider()">valider</button>
+  </div>
+  <div class="Soumettre" *ngIf="buttonText == 'Soumettre'">
+    <button type="submit" class="btn btn-primary rounded" (click)="soumettre()">Soumettre</button>
+  </div>
+  <div class="btn-group bug"
+    *ngIf="(buttonText == 'Ajouter Cvs' && utilisateur.role =='RH') || (buttonText == 'Filtre Cvs' && utilisateur.role =='Manager')">
+    <a class="btn btn-primary rounded" [routerLink]="['/list-cv', demande.id]" [queryParams]="{ afficherlistcv: true }"
+      (click)="closeModal()">
+      {{buttonText}}
+    </a>
+  </div>
+</div>

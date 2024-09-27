@@ -1,0 +1,113 @@
+/* make first column centered   */
+
+th:first-child, td:first-child {
+  font: 400 14px/1.5 "Roboto", sans-serif;
+  text-align: center;
+  color: #080808;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  font-weight: bold;
+}
+.table th {
+  font: 400 14px/1.5 "Roboto", sans-serif;
+  text-align: center;
+  color: #080808;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  font-weight: bold;
+}
+
+
+table, thead, tbody, th, td, tr {
+  text-align: center;
+}
+
+@media screen and (max-width: 640px) {
+  table, thead, tbody, th, td, tr {
+    display: block;
+  }
+}
+
+
+/* Styles pour la classe 'waiting' */
+
+
+.waiting {
+    display: inline-block;
+    padding:5px;
+    border-radius: 15px;
+    background-color: #f1a10cad;
+    color: #fcfafa;
+    font-weight: 500;
+  }
+  
+  /* Styles pour les boutons d'action */
+  .btn-icon {
+    margin-right: 5px; /* Marge à droite entre les boutons */
+  }
+  
+  /* Style spécifique pour le bouton 'View' avec l'icône 'eye' */
+  .btn-icon[title="View"] {
+    color: #007bff; /* Couleur bleue pour le bouton 'View' */
+  }
+  
+  /* Style spécifique pour le bouton 'Delete' avec l'icône de la corbeille */
+  .btn-icon[title="Delete"] {
+    color: #dc3545; /* Couleur rouge pour le bouton 'Delete' */
+  }
+  
+  /* Style pour le tableau avec Bootstrap classes */
+  .table {
+    width: 100%;
+    margin-bottom: 0;
+  }
+  
+  /* Style pour les cellules du tableau */
+  .table td,
+  .table th {
+    border: 1px solid #dee2e6; /* Bordure des cellules */
+    padding: 0.75rem; /* Espacement intérieur */
+    vertical-align: middle; /* Alignement vertical au centre */
+  }
+  
+  /* Style pour l'en-tête du tableau */
+  .table thead th {
+    vertical-align: middle; /* Alignement vertical au centre */
+  }
+  
+  /* Style pour les tags */
+  .tag {
+    display: inline-block;
+    padding: 0.25em 0.4em;
+    font-size: 75%;
+    font-weight: bold;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 0.25rem;
+  }
+  
+  /* Style spécifique pour le tag 'Recrutement' */
+  .tag-info {
+    background-color: #17a2b8; /* Couleur de fond pour le tag 'Recrutement' */
+  }
+  
+  /* Style pour les boutons 'Edit', 'View' et 'Delete' dans la dernière colonne */
+  .table .w100 {
+    white-space: nowrap; /* Empêche le retour à la ligne pour les boutons */
+    width: 1%; /* Largeur minimale */
+  }
+  
+  /* Style pour les boutons dans la dernière colonne */
+  .table .w100 .btn {
+    margin-right: 5px; /* Marge à droite entre les boutons */
+  }
+ 

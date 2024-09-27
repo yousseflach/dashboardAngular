@@ -1,0 +1,206 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
+.closeModel {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.closeModel .close {
+    font-size: 20px;
+    cursor: pointer;
+    color: white;
+    background-color: red;
+}
+
+.container {
+    height: fit-content;
+    padding-inline: 60px;
+}
+
+.container ul {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 20px;
+    list-style: none;
+    padding-inline: 0;
+    margin-block: 0;
+    margin-inline: 0;
+    padding-block: 0;
+    color: black;
+    font-weight: bold !important;
+    font-family:'Poppins', sans-serif;
+}
+
+.container ul div {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    list-style: none;
+    border: 1px solid #0D6EFD;
+    padding-inline: 0;
+    margin-block: 0;
+    margin-inline: 0;
+    padding-block: 0;
+    color: black;
+    font-weight: bold !important;
+    font-family:'Poppins', sans-serif;
+    width: 100%;
+    min-height: 100px;
+    height: 100%;
+
+}
+
+.container ul div h3 {
+    color: white;
+    background-color: #0D6EFD;
+    width: 100%;
+}
+
+.container ul div li {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    list-style: none;
+    position: relative;
+
+}
+
+.container ul div li h6{
+    color: black;
+    width: 100%;
+    font-size: 15px;
+    font-weight: 800 !important;
+    font-family:'Poppins', sans-serif;
+
+}
+
+.container ul div li p{
+    color: black;
+    width: 100%;
+    font-size: 15px;
+    font-weight: 100 !important;
+    font-family:'Poppins', sans-serif;
+    margin-inline-start: 30px;
+}
+
+
+/* Media queries */
+@media (max-width: 1200px) {
+    .container ul {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 992px) {
+    .container ul {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .container ul {
+        grid-template-columns: 1fr;
+    }
+}
+
+button {
+    margin: 0;
+    margin-bottom: 5%;
+}
+
+.btn-group {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(1, 1fr);
+    grid-column-gap: 62px;
+    grid-row-gap: 24px;
+
+}
+
+button {
+    padding: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: 0.3s;
+    cursor: pointer;
+    flex-direction: column;
+    color: rgb(71, 70, 70);
+    margin: 5%;
+    background-color: #f1f1f1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Poppins", sans-serif;
+    font-weight: bold;
+    font-style: normal;
+
+}
+
+.btn-group button:hover {
+    transform: translateY(-10px);
+}
+
+.btn-group .btn-danger:hover {
+    background-color: rgb(247, 57, 57);
+    color: white;
+
+}
+
+.btn-group .btn-primary:hover {
+    background-color: #0D6EFD;
+    color: white;
+
+}
+
+.Soumettre {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.Soumettre button {
+    padding: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: 0.3s;
+    cursor: pointer;
+    flex-direction: column;
+    color: rgb(71, 70, 70);
+    margin: 5%;
+    background-color: #f1f1f1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Poppins", sans-serif;
+    font-weight: bold;
+    font-style: normal;
+    width: 100%;
+}
+
+.Soumettre button:hover {
+    transform: translateY(-10px);
+    background-color: #0D6EFD;
+    color: white;
+
+}
+.container .bug{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.container .btn-group a{
+   font-family: "Poppins", sans-serif;
+   font-weight: bold;
+   font-style: normal;
+   color: white;
+   text-decoration: none;
+   margin-top: 10px;
+   margin-bottom: 10px;
+   width: 100%;
+}
